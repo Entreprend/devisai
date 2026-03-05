@@ -27,8 +27,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
-        <div className="bg-gray-900 rounded-2xl p-5 border border-gray-800">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">        <div className="bg-gray-900 rounded-2xl p-5 border border-gray-800">
           <p className="text-gray-400 text-sm mb-2">Total devis</p>
           <p className="text-3xl font-bold text-white">{count ?? 0}</p>
         </div>

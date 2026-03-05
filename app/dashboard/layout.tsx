@@ -13,54 +13,49 @@ export default async function DashboardLayout({
   if (!user) redirect('/auth/login')
 
   return (
-    <div className="flex min-h-screen bg-gray-950">
+    <div className="flex flex-col min-h-screen bg-gray-950">
 
-      {/* Sidebar */}
-      <aside className="w-56 bg-gray-900 border-r border-gray-800 flex flex-col p-4">
-
-        {/* Logo */}
-        <div className="flex items-center gap-2 mb-8 px-2">
+      {/* Header mobile + desktop */}
+      <header className="bg-gray-900 border-b border-gray-800 px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
             D
           </div>
           <span className="text-white font-bold">DevisAI</span>
         </div>
 
-        {/* Nav */}
-        <nav className="flex flex-col gap-1">
-          <Link href="/dashboard"
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800 transition text-sm">
-            🏠 Accueil
-          </Link>
-          <Link href="/dashboard/nouveau"
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800 transition text-sm">
-            ✨ Nouveau devis
-          </Link>
-          <Link href="/dashboard/historique"
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800 transition text-sm">
-            📋 Historique
-          </Link>
-        </nav>
-
-        {/* User + déconnexion en bas */}
-        <div className="mt-auto px-2 flex flex-col gap-2">
-          <p className="text-gray-500 text-xs truncate">{user.email}</p>
-          <form action="/auth/signout" method="POST">
-            <button
-              type="submit"
-              className="text-gray-400 hover:text-red-400 text-xs transition"
-            >
-              → Se déconnecter
-            </button>
-          </form>
+        <div className="flex items-center gap-1 text-xs text-gray-500 truncate max-w-[140px]">
+          {user.email}
         </div>
+      </header>
 
-      </aside>
+      {/* Nav horizontale */}
+      <nav className="bg-gray-900 border-b border-gray-800 px-4 flex gap-1 overflow-x-auto">
+        <Link href="/dashboard"
+              className="flex items-center gap-2 px-3 py-3 text-gray-400 hover:text-white whitespace-nowrap text-sm transition">
+          🏠 Accueil
+        </Link>
+        <Link href="/dashboard/nouveau"
+              className="flex items-center gap-2 px-3 py-3 text-gray-400 hover:text-white whitespace-nowrap text-sm transition">
+          ✨ Nouveau devis
+        </Link>
+        <Link href="/dashboard/historique"
+              className="flex items-center gap-2 px-3 py-3 text-gray-400 hover:text-white whitespace-nowrap text-sm transition">
+          📋 Historique
+        </Link>
+        <form action="/auth/signout" method="POST" className="ml-auto">
+          <button
+            type="submit"
+            className="flex items-center gap-2 px-3 py-3 text-gray-400 hover:text-red-400 whitespace-nowrap text-sm transition">
+            → Déconnexion
+          </button>
+        </form>
+      </nav>
 
-      {/* Contenu principal */}
-      <div className="flex-1 overflow-auto">
+      {/* Contenu */}
+      <main className="flex-1 overflow-auto">
         {children}
-      </div>
+      </main>
 
     </div>
   )
